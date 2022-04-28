@@ -1,0 +1,28 @@
+version: '3'
+services:
+    postgresdb:
+      # network_mode: host
+      container_name: postgresdb
+      image: postgresdb:v1
+      restart: always
+      build:
+          context: Postgres
+      ports:
+          - "5432:5342"
+      volumes:
+          - "postgresdb:/var/lib/postgresql/data"
+      environment:
+          - POSTGRES_PASSWORD=admin
+                   
+
+    adminer:
+      # network_mode: host    
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080     
+                   
+networks:
+  net:
+volumes:
+  postgresdb:

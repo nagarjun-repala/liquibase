@@ -1,0 +1,31 @@
+docker run --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase --defaultsFile=./liquibase.docker.properties --changeLogFile=changelog.xml
+
+docker run --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog sfat/liquibase:latest --defaultsFile=./liquibase.docker.properties status
+
+docker run --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase --defaultsFile=./liquibase.docker.properties status
+
+docker pull sfat/liquibase:latest
+
+docker run --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog sfat/liquibase:latest
+
+liquibase/liquibase:4.4.3
+
+docker run --rm -v /Users/support.liquibase.net/CLI-Projects/H2/resources:/liquibase/changelog liquibase/liquibase:latest --url="jdbc:h2:mem:liquibase_dev" --changeLogFile=db/changelog/db.changelog-master.yaml --username=admin --password=password status --verbose
+
+docker run --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:4.4.3 --url="jdbc:postgresql://localhost:5432/postgres?currentSchema=public" --username=postgres --password=admin --changelog-file=./changelog/changelog.sql status
+
+docker run --platform=linux/amd64 --network=host --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:4.4.3 --url="jdbc:postgresql://localhost:5432/postgres?currentSchema=public" --username=postgres --password=admin --changelog-file=./changelog/changelog.sql  
+
+docker run --platform=linux/amd64 --network=host --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:latest --defaultsFile=./liquibase.docker.properties status
+
+docker run --network=host --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:latest --url="jdbc:postgresql://localhost:5432/postgres?currentSchema=public" --username=postgres --password=admin --changelog-file=./changelog/changelog.sql  update 
+
+docker run --network=host --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:latest --url="jdbc:postgresql://localhost:5432/postgres?currentSchema=public" --username=postgres --password=admin --changelog-file=./changelog/changelog.sql  update 
+
+docker run --network=host --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase --defaultsFile=./changelog/liquibase.properties
+
+docker run --network=host --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:4.6 --defaults-file=./changelog/liquibase.properties --changelog-file=./changelog/changelog-2.sql --database-changelog-lock-table-name=dev-1.lock --database-changelog-table-name=dev-1 
+
+docker run --network=host --platform=linux/amd64 --rm -v /Users/nagarjun/Desktop/OfficeWork/liquibase:/liquibase/changelog liquibase/liquibase:4.6 --defaults-file=./changelog/liquibase.properties --changelog-file=./changelog/changelog-2.sql --database-changelog-lock-table-name=changelog.dev-1.lock --database-changelog-table-name=changelog.dev-1 update
+
+docker run --net=bridge --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -d postgres
